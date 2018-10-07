@@ -1,4 +1,8 @@
 window.onload = function start() {
+  // document.getElementById("theButton").onclick = function() {
+	// 	doWork();
+	// };
+
   $("html, body").animate({ scrollTop: $('#mainscreen').offset().top }, 10);
   // $("html, body").delay(8000).animate({scrollTop: $('#mainscreen').offset().top }, 1000);
 
@@ -139,10 +143,21 @@ httpGet();
 //   setTimeout(httpGet, 5000);
 //   return xmlHttp.responseText;
 // }
+
+// function doWork() {
+// 	// ajax the JSON to the server
+// 	$.post("receiver", cars, function(){
+//
+// 	});
+// 	// stop link reloading the page
+//  event.preventDefault();
+// }
+
 function httpGet(){
   fetch('http://127.0.0.1:5000/data')
   .then(function(myJson) {
-    console.log("%j", JSON.stringify(myJson));
+    var myObj = JSON.parse(myJSON);
+    document.getElementById("title").innerHTML = myObj.name;
   });
   }
 
