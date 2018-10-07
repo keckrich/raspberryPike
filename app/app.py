@@ -42,7 +42,6 @@ def data():
 	print ("data")
 	rpm =  temp/16.77
 	mph = rpm * 4.65
-	i = 0
 	return jsonify({'titlejson' : 'ITS WORKING!!!!', 'currentSpeedjson' : str(mph), 'sessionDistance': '2', 'timeLeftjson' : '1.23', 'SessionDuration': '2','rotationsperminute': '312', 'DistaceTotal': '23', 'TimeTotal': '13', 'DistaceTraveled': '1 mile', 'AverageSpeed': '15', 'InternetLeft': '21', 'bitsUsing' : '1234', 'bitsMaking' : '42', 'ranking' : 'winning', 'nextranking' : 'maybe winning', 'session': '5', 'AverageInternet': '23'})
      
 
@@ -61,7 +60,6 @@ def reseti ():
 def record_loop():
 
 	print ("loop satrted")
-	global i
 	gpio.setmode(gpio.BCM)
 	gpio.setup(18, gpio.IN, pull_up_down=gpio.PUD_DOWN)
 
@@ -76,10 +74,10 @@ def record_loop():
 		teso = 0
 	
 if __name__ == "__main__":
-	'''recording_on = Value('b', True)
+	recording_on = Value('b', True)
 	p = Process(target=record_loop, args=(recording_on,))
 	p.start()  
 	app.run(debug=False, use_reloader=False)
 	p.join()'''
 	app.run()
-	record_loop()
+	record_loop()'''
