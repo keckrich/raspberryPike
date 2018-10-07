@@ -45,7 +45,7 @@ def data():
                         
 def record_loop(loop_on):
 
-        print ("loop satrted")
+	print ("loop satrted")
 	gpio.setmode(gpio.BCM)
 	gpio.setup(18, gpio.IN, pull_up_down=gpio.PUD_DOWN)
 
