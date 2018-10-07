@@ -78,6 +78,5 @@ if __name__ == "__main__":
 	p = Process(target=record_loop, args=(recording_on,))
 	p.start()  
 	app.run(debug=False, use_reloader=False)
-	p.join()'''
-	app.run()
-	record_loop()'''
+	p.join()
+
