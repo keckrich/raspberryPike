@@ -8,7 +8,8 @@ def hello():
   #  return render_template('script.js', data = data) 
     #return "Hello World!"
     
-    return ('{"name":"John", "age":31, "city":"New York"}')
-
+    return (('{"name":"John", "age":31, "city":"New York"}'))
+    
+    
 if __name__ == '__main__':
     app.run()
