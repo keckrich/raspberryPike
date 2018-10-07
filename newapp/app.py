@@ -20,14 +20,14 @@ def data():
 	
 	
 def record_loop(loop_on):
-    i = 0
+	i = 0
 
-    gpio.setmode(gpio.BCM)
+	gpio.setmode(gpio.BCM)
 	gpio.setup(18, gpio.IN, pull_up_down=gpio.PUD_DOWN)
 
 	gpio.add_event_detect(18, gpio.RISING)
 	def my_callback(channel):
-	    global i
+		global i
 		i +=1
 		#print (i)
 
@@ -42,8 +42,8 @@ def record_loop(loop_on):
 	gpio.add_event_callback(18, my_callback)
 	
 if __name__ == "__main__":
-   recording_on = Value('b', True)
-   p = Process(target=record_loop, args=(recording_on,))
-   p.start()  
-   app.run(debug=True, use_reloader=False)
-   p.join()
+	recording_on = Value('b', True)
+	p = Process(target=record_loop, args=(recording_on,))
+	p.start()  
+	app.run(debug=True, use_reloader=False)
+	p.join()
