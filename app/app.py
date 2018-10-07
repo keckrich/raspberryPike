@@ -48,12 +48,12 @@ def data():
 
 
 def incrementi():
-	#global i
+	global i
 	i += 1
 	return i
 	
 def reseti ():
-	# i 
+	global i 
 	temp = i 
 	i = 0 
 	return temp
