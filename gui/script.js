@@ -152,25 +152,36 @@ httpGet();
 function httpGet() {
   document.getElementById('title').innerHTML = "hello";
 
-  fetch('http://127.0.0.1:5000/data')
-    .then(
-      function(response) {
-        if (response.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' +
-            response.status);
-          return;
-        }
+  fetch('http://127.0.0.1:5000/data', {mode: 'cors'})
+  .then(function(response) {
+    return response.text();
+  })
+  .then(function(text) {
+    console.log('Request successful', text);
+  })
+  .catch(function(error) {
+    log('Request failed', error)
+  });
 
-        // Examine the text in the response
-        response.json().then(function(data) {
-          console.log(data.name);
-          document.getElementById('title').innerHTML = data.name;
-        });
-      }
-    )
-    .catch(function(err) {
-      console.log('Fetch Error :-S', err);
-    });
+  // fetch('http://127.0.0.1:5000/data')
+  //   .then(
+  //     function(response) {
+  //       if (response.status !== 200) {
+  //         console.log('Looks like there was a problem. Status Code: ' +
+  //           response.status);
+  //         return;
+  //       }
+  //
+  //       // Examine the text in the response
+  //       response.json().then(function(data) {
+  //         console.log(data.name);
+  //         document.getElementById('title').innerHTML = data.name;
+  //       });
+  //     }
+  //   )
+  //   .catch(function(err) {
+  //     console.log('Fetch Error :-S', err);
+  //   });
 }
 
 function checkTime(i) {
