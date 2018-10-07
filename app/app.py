@@ -39,9 +39,10 @@ def index():
 def data():
 	global i
 	rpm =  i/16.77
-	mph = i * 4.65
+	mph = rpm * 4.65
+	i = 0
 	return jsonify({'titlejson' : 'ITS WORKING!!!!', 'currentSpeedjson' : mph, 'sessionDistance': '2', 'timeLeftjson' : '1.23', 'SessionDuration': '2','rotationsperminute': '312', 'DistaceTotal': '23', 'TimeTotal': '13', 'DistaceTraveled': '1 mile', 'AverageSpeed': '15', 'InternetLeft': '21', 'bitsUsing' : '1234', 'bitsMaking' : '42', 'ranking' : 'winning', 'nextranking' : 'maybe winning', 'session': '5', 'AverageInternet': '23'})
-        i = 0
+
 	
 	
 def record_loop(loop_on):
@@ -67,6 +68,8 @@ def record_loop(loop_on):
 	sec_timer()
 	'''
 	gpio.add_event_callback(18, my_callback)
+
+	while True:
 	
 if __name__ == "__main__":
 	recording_on = Value('b', True)
