@@ -58,20 +58,10 @@ def record_loop(loop_on):
 		i +=1
 		print (i)
 
-	'''
-	def sec_timer():
-		global i
-		print (i/16.77)
-		i = 0
-		t = threading.Timer(1.0, sec_timer)
-		t.start()
-
-	sec_timer()
-	'''
 	gpio.add_event_callback(18, my_callback)
 
 	while True:
-                fd = 0
+		fd = 0
 	
 if __name__ == "__main__":
 	recording_on = Value('b', True)
