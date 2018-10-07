@@ -163,7 +163,7 @@ function httpGet() {
 
         // Examine the text in the response
         response.json().then(function(data) {
-          console.log(data);
+          console.log(data.name);
           document.getElementById('title').innerHTML = data.name;
         });
       }
@@ -171,13 +171,6 @@ function httpGet() {
     .catch(function(err) {
       console.log('Fetch Error :-S', err);
     });
-//   fetch('http://127.0.0.1:5000/data')
-//   .then(function(response) {
-// console.log(response.json());
-// })
-// .then(function(myJson) {
-//   console.log(JSON.stringify(myJson));
-// });
 }
 
 function checkTime(i) {
