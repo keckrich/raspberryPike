@@ -1,7 +1,7 @@
 window.onload = function start() {
-  // httpGet("url of your python function");
-  $("html, body").animate({ scrollTop: $('#preloader').offset().top }, 10);
-  $("html, body").delay(8000).animate({scrollTop: $('#mainscreen').offset().top }, 1000);
+  httpGet("/data");
+  $("html, body").animate({ scrollTop: $('#mainscreen').offset().top }, 10);
+  // $("html, body").delay(8000).animate({scrollTop: $('#mainscreen').offset().top }, 1000);
 
   var lineDrawing = anime({
     targets: '#lineDrawing .lines path',
@@ -135,7 +135,7 @@ function httpGet(theUrl){
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
   xmlHttp.send( null );
-  console.log("Get request");
+  console.log(xmlHttp);
   setTimeout(httpGet, 5000);
   return xmlHttp.responseText;
 }
