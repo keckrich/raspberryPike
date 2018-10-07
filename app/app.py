@@ -24,7 +24,7 @@ import RPi.GPIO as gpio
 import threading
 
 i = 0
-
+j =0 
 
 app = Flask(__name__)
 @app.route('/<path:path>')
@@ -37,10 +37,10 @@ def index():
 
 @app.route('/data')
 def data():
-	global i
-	print (i)
+	temp = reseti()
+	print (temp)
 	print ("data")
-	rpm =  i/16.77
+	rpm =  temp/16.77
 	mph = rpm * 4.65
 	i = 0
 	return jsonify({'titlejson' : 'ITS WORKING!!!!', 'currentSpeedjson' : str(mph), 'sessionDistance': '2', 'timeLeftjson' : '1.23', 'SessionDuration': '2','rotationsperminute': '312', 'DistaceTotal': '23', 'TimeTotal': '13', 'DistaceTraveled': '1 mile', 'AverageSpeed': '15', 'InternetLeft': '21', 'bitsUsing' : '1234', 'bitsMaking' : '42', 'ranking' : 'winning', 'nextranking' : 'maybe winning', 'session': '5', 'AverageInternet': '23'})
@@ -54,14 +54,26 @@ def record_loop(loop_on):
 
 	gpio.add_event_detect(18, gpio.RISING)
 	def my_callback(channel):
+		temp = incrementi()
+		print (temp)
+		
+	def incrementi():
 		global i
-		i +=1
-		print (i)
+		i += 1
+		return i
+		
+	def reseti ():
+		global i 
+		temp = i 
+		i = 0 
+		return temp
 
 	gpio.add_event_callback(18, my_callback)
 
 	while True:
-		fd = 0
+		global i 
+		global j
+		j = i
 	
 if __name__ == "__main__":
 	recording_on = Value('b', True)
