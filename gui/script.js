@@ -1,6 +1,6 @@
 window.onload = function start() {
-  $("html, body").animate({ scrollTop: $('#mainscreen').offset().top }, 10);
-  // $("html, body").delay(8000).animate({scrollTop: $('#mainscreen').offset().top }, 1000);
+  $("html, body").animate({ scrollTop: $('#preloader').offset().top }, 10);
+  $("html, body").delay(8000).animate({scrollTop: $('#mainscreen').offset().top }, 1000);
 
   var lineDrawing = anime({
     targets: '#lineDrawing .lines path',
