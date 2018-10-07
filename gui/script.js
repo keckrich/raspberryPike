@@ -1,5 +1,4 @@
 window.onload = function start() {
-  httpGet("/data");
   $("html, body").animate({ scrollTop: $('#mainscreen').offset().top }, 10);
   // $("html, body").delay(8000).animate({scrollTop: $('#mainscreen').offset().top }, 1000);
 
@@ -129,6 +128,7 @@ var chart2 = new Chart(cty, {
     }
   }
 });
+httpGet("/data");
 };
 
 function httpGet(theUrl){
