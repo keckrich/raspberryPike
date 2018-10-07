@@ -131,14 +131,24 @@ var chart2 = new Chart(cty, {
 httpGet("/data");
 };
 
-function httpGet(theUrl){
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-  xmlHttp.send( null );
-  console.log(xmlHttp);
-  setTimeout(httpGet, 5000);
-  return xmlHttp.responseText;
-}
+// function httpGet(theUrl){
+//   var xmlHttp = new XMLHttpRequest();
+//   xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+//   xmlHttp.send( null );
+//   console.log(xmlHttp);
+//   setTimeout(httpGet, 5000);
+//   return xmlHttp.responseText;
+// }
+function httpGet(){
+  // url (required), options (optional)
+fetch('http://127.0.0.1:5000', {
+	method: 'get'
+}).then(function(response) {
+console.log(response);
+}).catch(function(err) {
+	console.log("it dosent work");
+});
+  }
 
 function checkTime(i) {
     if (i < 10) {i = "0" + i};
