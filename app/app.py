@@ -70,6 +70,7 @@ def record_loop(loop_on):
 	gpio.add_event_callback(18, my_callback)
 
 	while True:
+                fd = 0
 	
 if __name__ == "__main__":
 	recording_on = Value('b', True)
