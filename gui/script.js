@@ -149,11 +149,17 @@ httpGet();
 //  event.preventDefault();
 // }
 
-function httpGet(){
+function httpGet() {
   document.getElementById('title').innerHTML = "hello";
-    var myObj = JSON.parse(fetch('http://127.0.0.1:5000/data'));
-    document.getElementById('title').innerHTML = myObj.name;
-  }
+
+  fetch('http://127.0.0.1:5000/data')
+  .then(function(response) {
+console.log(response.json());
+})
+.then(function(myJson) {
+  console.log(JSON.stringify(myJson));
+});
+}
 
 function checkTime(i) {
     if (i < 10) {i = "0" + i};
