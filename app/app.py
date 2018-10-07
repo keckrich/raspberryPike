@@ -58,7 +58,7 @@ def reseti ():
 	i = 0 
 	return temp
 		
-def record_loop(loop_on):
+def record_loop():
 
 	print ("loop satrted")
 	global i
@@ -69,8 +69,6 @@ def record_loop(loop_on):
 	def my_callback(channel):
 		temp = incrementi()
 		print (temp)
-		
-
 
 	gpio.add_event_callback(18, my_callback)
 
@@ -78,8 +76,10 @@ def record_loop(loop_on):
 		teso = 0
 	
 if __name__ == "__main__":
-	recording_on = Value('b', True)
+	'''recording_on = Value('b', True)
 	p = Process(target=record_loop, args=(recording_on,))
 	p.start()  
 	app.run(debug=False, use_reloader=False)
-	p.join()
+	p.join()'''
+	app.run()
+	record_loop()
