@@ -140,14 +140,13 @@ httpGet("/data");
 //   return xmlHttp.responseText;
 // }
 function httpGet(){
-  // url (required), options (optional)
-fetch('http://127.0.0.1:5000', {
-	method: 'get'
-}).then(function(response) {
-console.log(response);
-}).catch(function(err) {
-	console.log("it dosent work");
-});
+  fetch('http://127.0.0.1:5000')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log(JSON.stringify(myJson));
+  });
   }
 
 function checkTime(i) {
