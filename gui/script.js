@@ -140,7 +140,7 @@ httpGet("/data");
 //   return xmlHttp.responseText;
 // }
 function httpGet(){
-  fetch('http://127.0.0.1:5000')
+  fetch('http://127.0.0.1:5000/data')
   .then(function(response) {
     return response.json();
   })
