@@ -152,7 +152,7 @@ httpGet();
 function httpGet(){
   document.getElementById('title').innerHTML = "hello";
   fetch('http://127.0.0.1:5000/data')
-    var myJSON = '{"name":"John", "age":31, "city":"New York"}';
+    var myJSON = '';
     var myObj = JSON.parse(myJSON);
     document.getElementById('title').innerHTML = myObj.name;
   }
