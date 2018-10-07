@@ -45,6 +45,7 @@ def data():
                         
 def record_loop(loop_on):
 
+        print ("loop satrted")
 	gpio.setmode(gpio.BCM)
 	gpio.setup(18, gpio.IN, pull_up_down=gpio.PUD_DOWN)
 
@@ -52,7 +53,7 @@ def record_loop(loop_on):
 	def my_callback(channel):
 		global i
 		i +=1
-		#print (i)
+		print (i)
 
 	'''
 	def sec_timer():
