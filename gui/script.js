@@ -160,7 +160,7 @@ function httpGet() {
     console.log('Request successful', text);
   })
   .catch(function(error) {
-    log('Request failed', error)
+    console.log('Request failed', error)
   });
 
   // fetch('http://127.0.0.1:5000/data')
