@@ -16,9 +16,34 @@ body{
   overflow: hidden;
 }
 
-#informationScreen{
+#preloader{
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  right: 0%;
+  top: 0;
+}
+.logointro{
+  top: 50%;
+  width: 60%;
+  margin: 0;
+    position: absolute;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+#lineDrawing{
+}
+
+#mainscreen{
   position: absolute;
   top: 100%;
+}
+
+#informationScreen{
+  position: absolute;
+  top: 200%;
 }
 
 section {
@@ -131,7 +156,6 @@ section {
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-
 }
 
 #currentime{
