@@ -47,5 +47,5 @@ if __name__ == "__main__":
 	recording_on = Value('b', True)
 	p = Process(target=record_loop, args=(recording_on,))
 	p.start()  
-	app.run
+	app.run(debug=False, use_reloader=False)
 	p.join()
