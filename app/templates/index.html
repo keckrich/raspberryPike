@@ -358,38 +358,6 @@ $(document).ready(function(){
     var session = 0;
     var averageinternet = 0;
 
-
-function getdata(){
-  getData = $.get('/data');
-    getData.done(function (results) {
-      console.log(results);
-
-      sessiondistance = results.sessionDistance;
-      currentSpeedjson = results.currentSpeedjson;
-      title = results.titlejson;
-      currentime = results.timeLeftjson;
-      currentspeed = results.currentSpeedjson;
-      sessionDuration = results.SessionDuration;
-      rotationsPerMilute = results.rotationsperminute;
-      milesPerHour = results.currentSpeedjson;
-      DistanceTotal = results.DistaceTotal;
-      TimeTotal = results.TimeTotal;
-      DistanceTraveled = results.DistaceTraveled;
-      AverageSpeed = results.AverageSpeed;
-
-      internetLeft = results.InternetLeft;
-      bitsUsing = results.bitsUsing;
-      bitsMaking = results.bitsMaking;
-      ranking = results.ranking;
-      nextranking = results.nextranking;
-      session = results.session;
-      averageinternet = results.AverageInternet;
-
-      updateObjects();
-    });
-    setTimeout(getdata,1000);
-  }
-
     function updateObjects(){
       // document.getElementById('currentspeed').innerHTML = currentSpeedjson;
       document.getElementById('title').innerHTML = title;
@@ -415,27 +383,11 @@ function getdata(){
 
     };
 
-    window.onload = function start() {
-      getdata();
-      $("html, body").animate({ scrollTop: $('#preloader').offset().top }, 10);
-
-      var lineDrawing = anime({
-        targets: '#lineDrawing .lines path',
-        strokeDashoffset: [anime.setDashoffset, 0],
-        easing: 'easeInOutSine',
-        duration: 1500,
-        delay: function(el, i) { return i * 250 },
-        direction: 'alternate',
-        loop: true
-      });
-
-    startTime();
-
     var ctx = document.getElementById('speedgraph').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+            labels: ["", "", "", "", "", "", "", "", "", "", "", "", "", ""],
             datasets: [{
                 label: "",
                 backgroundColor: false,
@@ -485,11 +437,12 @@ function getdata(){
         }
       }
     });
+
     var cty = document.getElementById('rewardgraph').getContext('2d');
     var chart2 = new Chart(cty, {
         type: 'line',
         data: {
-            labels: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+            labels: ["", "", "", "", "", "", "", "", "", "", "", "", "", ""],
             datasets: [{
                 label: "",
                 backgroundrColor: '',
@@ -536,8 +489,71 @@ function getdata(){
         }
       }
     });
+
+    window.onload = function start() {
+      getdata();
+      $("html, body").animate({ scrollTop: $('#preloader').offset().top }, 10);
+
+      var lineDrawing = anime({
+        targets: '#lineDrawing .lines path',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'easeInOutSine',
+        duration: 1500,
+        delay: function(el, i) { return i * 250 },
+        direction: 'alternate',
+        loop: true
+      });
+
+    startTime();
+
     $("html, body").delay(6000).animate({scrollTop: $('#mainscreen').offset().top }, 1000);
     };
+
+    function getdata(){
+      getData = $.get('/data');
+        getData.done(function (results) {
+          // console.log(results);
+
+          sessiondistance = results.sessionDistance;
+          currentSpeedjson = results.currentSpeedjson;
+          title = results.titlejson;
+          currentime = results.timeLeftjson;
+          currentspeed = results.currentSpeedjson;
+          sessionDuration = results.SessionDuration;
+          rotationsPerMilute = results.rotationsperminute;
+          milesPerHour = results.currentSpeedjson;
+          DistanceTotal = results.DistaceTotal;
+          TimeTotal = results.TimeTotal;
+          DistanceTraveled = results.DistaceTraveled;
+          AverageSpeed = results.AverageSpeed;
+
+          internetLeft = results.InternetLeft;
+          bitsUsing = results.bitsUsing;
+          bitsMaking = results.bitsMaking;
+          ranking = results.ranking;
+          nextranking = results.nextranking;
+          session = results.session;
+          averageinternet = results.AverageInternet;
+
+          updateObjects();
+          moveChart();
+          moveChart2();
+        });
+        setTimeout(getdata,1000);
+      }
+
+    function moveChart() {
+    var data = chart.data.datasets[0].data;
+    data.push(milesPerHour);    // add the new value to the right
+    data.shift();        // remove the first left value
+    chart.update();
+  }
+  function moveChart2() {
+  var data2 = chart2.data.datasets[0].data;
+  data2.push(milesPerHour);    // add the new value to the right
+  data2.shift();        // remove the first left value
+  chart2.update();
+}
 
     function checkTime(i) {
         if (i < 10) {i = "0" + i};
