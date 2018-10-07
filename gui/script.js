@@ -1,8 +1,4 @@
 window.onload = function start() {
-  // document.getElementById("theButton").onclick = function() {
-	// 	doWork();
-	// };
-
   $("html, body").animate({ scrollTop: $('#mainscreen').offset().top }, 10);
   // $("html, body").delay(8000).animate({scrollTop: $('#mainscreen').offset().top }, 1000);
 
