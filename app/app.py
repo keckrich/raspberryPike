@@ -24,7 +24,7 @@ import RPi.GPIO as gpio
 import threading
 
 i = 0
-j =0 
+
 
 app = Flask(__name__)
 @app.route('/<path:path>')
@@ -71,9 +71,7 @@ def record_loop(loop_on):
 	gpio.add_event_callback(18, my_callback)
 
 	while True:
-		global i 
-		global j
-		j = i
+		teso = 0
 	
 if __name__ == "__main__":
 	recording_on = Value('b', True)
