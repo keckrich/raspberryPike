@@ -152,9 +152,9 @@ httpGet();
 function httpGet() {
   document.getElementById('title').innerHTML = "hello";
 
-  fetch('http://127.0.0.1:5000/data', {mode: 'cors'})
+  fetch('http://127.0.0.1:5000/data', {mode: 'basic'})
   .then(function(response) {
-    return response.text();
+    console.log('Request successful', response.text());
   })
   .then(function(text) {
     console.log('Request successful', text);
