@@ -150,10 +150,11 @@ httpGet();
 // }
 
 function httpGet(){
+  document.getElementById('title').innerHTML = "hello";
   fetch('http://127.0.0.1:5000/data')
   .then(function(myJson) {
     var myObj = JSON.parse(myJSON);
-    document.getElementById("title").innerHTML = myObj.name;
+    document.getElementById('title').innerHTML = myObj.name;
   });
   }
 
