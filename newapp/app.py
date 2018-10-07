@@ -4,6 +4,9 @@ from multiprocessing import Process, Value
 import RPi.GPIO as gpio
 import threading
 
+i = 0
+
+
 app = Flask(__name__)
 @app.route('/<path:path>')
 def static_file(path):
@@ -15,12 +18,16 @@ def index():
 
 @app.route('/data')
 def data():
-    return jsonify({'titlejson' : 'ITS WORKING!!!!', 'currentSpeedjson' : '12.3', 'timeLeftjson' : '1.23'})
+	global i
+	rpm =  i/16.77
+	mph = i = 4.65
+	i = 0
+    return jsonify({'titlejson' : 'ITS WORKING!!!!', 'currentSpeedjson' : mph, 'sessionDistance': '2', 'timeLeftjson' : '1.23', 'SessionDuration': '2','rotationsperminute': '312', 'DistaceTotal': '23', 'TimeTotal': '13', 'DistaceTraveled': '1 mile', 'AverageSpeed': '15', 'InternetLeft': '21', 'bitsUsing' : '1234', 'bitsMaking' : '42', 'ranking' : 'winning', 'nextranking' : 'maybe winning', 'session': '5', 'AverageInternet': '23'})
 
 	
 	
 def record_loop(loop_on):
-	i = 0
+	
 
 	gpio.setmode(gpio.BCM)
 	gpio.setup(18, gpio.IN, pull_up_down=gpio.PUD_DOWN)
