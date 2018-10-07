@@ -38,6 +38,7 @@ def index():
 @app.route('/data')
 def data():
 	global i
+	print (i + "data")
 	rpm =  i/16.77
 	mph = rpm * 4.65
 	i = 0
