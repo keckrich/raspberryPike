@@ -309,26 +309,26 @@ $(document).ready(function(){
       <div id="speed">
         <div class="currentspeedsection">
           <span class="center">
-            <div class="statLine"><span class="stattitle">Session Duration</span><span class="data">123</span></div>
-            <div class="statLine"><span class="stattitle">RPM</span><span class="data">123</span></div>
-            <div class="statLine"><span class="stattitle">MPH</span><span id="currentspeeddata" class="data">123</span></div>
-            <div class="statLine"><span class="stattitle">Distance Total</span><span class="data">123</span></div>
-            <div class="statLine"><span class="stattitle">Time Total</span><span class="data">123</span></div>
-            <div class="statLine"><span class="stattitle">Distance Traveled</span><span class="data">123</span></div>
-            <div class="statLine"><span class="stattitle">Average Speed</span><span class="data">123</span></div>
+            <div class="statLine"><span class="stattitle">Session Duration</span><span class="data" id="sessiondurationdata">123</span></div>
+            <div class="statLine"><span class="stattitle">RPM</span><span class="data" id="RPMdata">123</span></div>
+            <div class="statLine"><span class="stattitle">MPH</span><span class="data" id="MPHData">123</span></div>
+            <div class="statLine"><span class="stattitle">Distance Total</span><span class="data" id="distanceTotaldata">123</span></div>
+            <div class="statLine"><span class="stattitle">Time Total</span><span class="data" id="timeTotaldata">123</span></div>
+            <div class="statLine"><span class="stattitle">Traveled</span><span class="data" id="distanceTraveleddata">123</span></div>
+            <div class="statLine"><span class="stattitle">Average Speed</span><span class="data" id="averageSpeeddata">123</span></div>
           </span>
         </div>
       </div>
       <div id="timeinfo">
         <div class="timeearned">
           <span class="center">
-            <div class="statLine"><span class="stattitle">Internet Left</span><span class="data">123</span></div>
-            <div class="statLine"><span class="stattitle">Bits Using</span><span class="data">123</span></div>
-            <div class="statLine"><span class="stattitle">Bits Making</span><span class="data">123</span></div>
-            <div class="statLine"><span class="stattitle">Ranking</span><span class="data">123</span></div>
-            <div class="statLine"><span class="stattitle">Next Ranking</span><span class="data">123</span></div>
-            <div class="statLine"><span class="stattitle">Session</span><span class="data">123</span></div>
-            <div class="statLine"><span class="stattitle">Average Internet</span><span class="data">123</span></div>
+            <div class="statLine"><span class="stattitle">Internet Left</span><span class="data" id="internetLeftdata">123</span></div>
+            <div class="statLine"><span class="stattitle">Bits Using</span><span class="data" id="bitsUsingdata">123</span></div>
+            <div class="statLine"><span class="stattitle">Bits Making</span><span class="data" id="bitsMakingdata">123</span></div>
+            <div class="statLine"><span class="stattitle">Ranking</span><span class="data" id="rankingData">123</span></div>
+            <div class="statLine"><span class="stattitle">Next Ranking</span><span class="data" id="nextrankingdata">123</span></div>
+            <div class="statLine"><span class="stattitle">Session</span><span class="data" id="sessionData">123</span></div>
+            <div class="statLine"><span class="stattitle">Average Internet</span><span class="data" id="averageSpeeddata">123</span></div>
           </span>
         </div>
       </div>
@@ -336,35 +336,87 @@ $(document).ready(function(){
 
     <script>
     var getData = $.get('/data');
-    var currentSpeed = 0;
+    var currentSpeedjson = 0;
     var title = "hello";
     var currentime = 0;
     var currentspeed = 0;
+    var sessiondistance = 0;
+
+    var sessionDuration = 0;
+    var rotationsPerMilute = 0;
+    var milesPerHour = 0;
+    var DistanceTotal = 0;
+    var TimeTotal = 0;
+    var DistanceTraveled = 0;
+    var AverageSpeed = 0;
+
+    var internetLeft = 0;
+    var bitsUsing = 0;
+    var bitsMaking = 0;
+    var ranking = 0;
+    var nextranking = 0;
+    var session = 0;
+    var averageinternet = 0;
 
 
-    getData.done(function(results) {
+function getdata(){
+  getData = $.get('/data');
+    getData.done(function (results) {
       console.log(results);
 
-      currentSpeed = results.currentSpeedjson;
+      sessiondistance = results.sessionDistance;
+      currentSpeedjson = results.currentSpeedjson;
       title = results.titlejson;
       currentime = results.timeLeftjson;
       currentspeed = results.currentSpeedjson;
+      sessionDuration = results.SessionDuration;
+      rotationsPerMilute = results.rotationsperminute;
+      milesPerHour = results.currentSpeedjson;
+      DistanceTotal = results.DistaceTotal;
+      TimeTotal = results.TimeTotal;
+      DistanceTraveled = results.DistaceTraveled;
+      AverageSpeed = results.AverageSpeed;
+
+      internetLeft = results.InternetLeft;
+      bitsUsing = results.bitsUsing;
+      bitsMaking = results.bitsMaking;
+      ranking = results.ranking;
+      nextranking = results.nextranking;
+      session = results.session;
+      averageinternet = results.AverageInternet;
+
       updateObjects();
     });
+    setTimeout(getdata,1000);
+  }
 
     function updateObjects(){
-      document.getElementById('currentspeed').innerHTML = currentSpeed;
+      // document.getElementById('currentspeed').innerHTML = currentSpeedjson;
       document.getElementById('title').innerHTML = title;
       document.getElementById('currentime').innerHTML = currentime;
-      document.getElementById('currentspeeddata').innerHTML = currentSpeed;
-      setTimeout( updateObjects, 1000 );
-    }
+      document.getElementById('currentspeed').innerHTML = currentSpeedjson;
+      document.getElementById('currentDistance').innerHTML = sessiondistance;
+      document.getElementById('rewardhistory').innerHTML = averageinternet;
+
+      document.getElementById('sessiondurationdata').innerHTML = sessionDuration;
+      document.getElementById('RPMdata').innerHTML = rotationsPerMilute;
+      document.getElementById('MPHData').innerHTML = milesPerHour;
+      document.getElementById('distanceTotaldata').innerHTML = DistanceTotal;
+      document.getElementById('timeTotaldata').innerHTML = TimeTotal;
+      document.getElementById('distanceTraveleddata').innerHTML = DistanceTraveled;
+
+      document.getElementById('internetLeftdata').innerHTML = internetLeft;
+      document.getElementById('bitsUsingdata').innerHTML = bitsUsing;
+      document.getElementById('bitsMakingdata').innerHTML = bitsMaking;
+      document.getElementById('rankingData').innerHTML = ranking;
+      document.getElementById('nextrankingdata').innerHTML = nextranking;
+      document.getElementById('sessionData').innerHTML = session;
+      document.getElementById('averageSpeeddata').innerHTML = averageinternet;
+
+    };
 
     window.onload = function start() {
-      document.getElementById('currentspeed').innerHTML = currentSpeed;
-      document.getElementById('title').innerHTML = title;
-      document.getElementById('currentime').innerHTML = currentime;
-      document.getElementById('currentspeeddata').innerHTML = currentSpeed;
+      getdata();
       $("html, body").animate({ scrollTop: $('#preloader').offset().top }, 10);
 
       var lineDrawing = anime({
@@ -377,12 +429,6 @@ $(document).ready(function(){
         loop: true
       });
 
-      $("html, body").delay(8000).animate({scrollTop: $('#mainscreen').offset().top }, 1000);
-
-    document.getElementById('currentDistance').innerHTML =
-    "5 m";
-    document.getElementById('rewardhistory').innerHTML =
-    "5 m";
     startTime();
 
     var ctx = document.getElementById('speedgraph').getContext('2d');
@@ -490,6 +536,7 @@ $(document).ready(function(){
         }
       }
     });
+    $("html, body").delay(6000).animate({scrollTop: $('#mainscreen').offset().top }, 1000);
     };
 
     function checkTime(i) {
