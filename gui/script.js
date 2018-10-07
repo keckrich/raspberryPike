@@ -164,6 +164,7 @@ function httpGet() {
         // Examine the text in the response
         response.json().then(function(data) {
           console.log(data);
+          document.getElementById('title').innerHTML = data.name;
         });
       }
     )
