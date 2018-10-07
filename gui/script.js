@@ -128,7 +128,7 @@ var chart2 = new Chart(cty, {
     }
   }
 });
-httpGet("/data");
+httpGet();
 };
 
 // function httpGet(theUrl){
