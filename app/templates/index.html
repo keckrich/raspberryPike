@@ -2,8 +2,210 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="script.js"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+    *, *:after, *:before {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      transition: 0.1s;
+    }
+
+    body{
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    	text-rendering: optimizeLegibility;
+      font-family: 'Heebo', sans-serif;
+      background: #3b4754;
+      color: white;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #preloader{
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      right: 0%;
+      top: 0;
+    }
+    .logointro{
+      top: 50%;
+      width: 60%;
+      margin: 0;
+        position: absolute;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+    #lineDrawing{
+    }
+
+    #mainscreen{
+      position: absolute;
+      top: 100%;
+    }
+
+    #informationScreen{
+      position: absolute;
+      top: 200%;
+    }
+
+    section {
+      height: 100%;
+      width: 100%;
+      display: table;
+      z-index: 0;
+    }
+
+    .header{
+      right: 0;
+      position: absolute;
+      width: 90%;
+      height: 8%;
+      color: white;
+      text-align: center;
+    }
+
+    #sidebar{
+      display: block;
+      position: absolute;
+      background-color: black;
+      height: 100%;
+      width: 10%;
+      left: 0;
+      top: 0;
+    }
+
+    #clock{
+      display: block;
+      float: right;
+      padding: 0.5em;
+    }
+
+    #clock2{
+      display: block;
+      float: right;
+      padding: 0.5em;
+    }
+
+    .title{
+      display: block;
+      float: left;
+      padding: 0.5em;
+    }
+
+    .currentspeedsection {
+      height: 8em;
+      vertical-align: middle;
+      text-align: center;
+      width: 45%;
+      left: 0;
+    }
+
+    .timeearned {
+      height: 8em;
+      vertical-align: middle;
+      text-align: center;
+      width: 45%;
+      left: 0;
+    }
+
+    #speed {
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 45%;
+      left: 10%;
+      top: 0;
+    }
+
+    #currentspeed{
+      font-size: 5rem;
+      line-height: 0.3;
+    }
+
+    #milesperhourtext{
+      font-size: 1rem;
+      margin: 0;
+      padding: 0;
+      line-height: 0;
+    }
+    #currentDistance{
+      font-size: 2rem;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+    }
+
+    #rewardhistory{
+      font-size: 2rem;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+    }
+
+    #timeinfo{
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 45%;
+      right: 0%;
+      top: 0;
+    }
+
+    .center{
+      margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #currentime{
+      font-size: 5rem;
+      line-height: 0.3;
+    }
+
+    #secondsleft{
+      font-size: 1rem;
+      margin: 0;
+      padding: 0;
+      line-height: 0;
+    }
+
+    .statLine{
+      font-size: 1.5rem;
+      padding: 1em;
+      width: 100%;
+    }
+
+    .stattitle{
+      margin: 0;
+      padding-right: 2em;
+      display: block;
+      float: left;
+      color: #728090;
+    }
+
+    .data{
+      padding-left: 1em;
+      display: block;
+      float: right;
+      color: white;
+    }
+
+    #currentspeeddata{
+      padding-left: 1em;
+      display: block;
+      float: right;
+      color: white;
+    }
+
+    </style>
+    <!-- <script type="text/javascript" src="script.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
     <script src="anime.min.js"></script>
@@ -134,15 +336,182 @@ $(document).ready(function(){
 
     <script>
     var getData = $.get('/data');
+    var currentSpeed = 0;
+    var title = "hello";
+    var currentime = 0;
+    var currentspeed = 0;
+
 
     getData.done(function(results) {
       console.log(results);
-      document.getElementById('currentspeed').innerHTML = results.currentSpeedjson;
-      document.getElementById('title').innerHTML = results.titlejson;
-      document.getElementById('currentime').innerHTML = results.timeLeftjson;
-      document.getElementById('currentspeeddata').innerHTML = results.currentSpeedjson;
+
+      currentSpeed = results.currentSpeedjson;
+      title = results.titlejson;
+      currentime = results.timeLeftjson;
+      currentspeed = results.currentSpeedjson;
+      updateObjects();
     });
 
+    function updateObjects(){
+      document.getElementById('currentspeed').innerHTML = currentSpeed;
+      document.getElementById('title').innerHTML = title;
+      document.getElementById('currentime').innerHTML = currentime;
+      document.getElementById('currentspeeddata').innerHTML = currentSpeed;
+    }
+
+    window.onload = function start() {
+      document.getElementById('currentspeed').innerHTML = currentSpeed;
+      document.getElementById('title').innerHTML = title;
+      document.getElementById('currentime').innerHTML = currentime;
+      document.getElementById('currentspeeddata').innerHTML = currentSpeed;
+      $("html, body").animate({ scrollTop: $('#preloader').offset().top }, 10);
+
+      var lineDrawing = anime({
+        targets: '#lineDrawing .lines path',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'easeInOutSine',
+        duration: 1500,
+        delay: function(el, i) { return i * 250 },
+        direction: 'alternate',
+        loop: true
+      });
+
+      $("html, body").delay(8000).animate({scrollTop: $('#mainscreen').offset().top }, 1000);
+
+    document.getElementById('currentDistance').innerHTML =
+    "5 m";
+    document.getElementById('rewardhistory').innerHTML =
+    "5 m";
+    startTime();
+
+    var ctx = document.getElementById('speedgraph').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+            datasets: [{
+                label: "",
+                backgroundColor: false,
+                fill: false,
+                borderColor: 'rgb(0, 199, 255)',
+                data: [5, 10, 5, 7, 20, 30, 45, 5, 10, 5, 7, 20, 30, 45],
+            }]
+        },
+        options: {
+          elements:{
+            point:{
+              radius:0
+            }
+          },
+          datasets:[{
+            fill: false
+          }],
+          line:{
+            fill: false
+          },
+          drawBorder: false,
+          drawTicks: false,
+          legend: {
+            display: false
+          },
+          title: {
+            display: false
+          },
+          tooltop:{
+            enabled: false
+          },
+          scales: {
+            yAxes:[{
+              gridLines: false,
+              drawBorder: false,
+              ticks:{
+                display: false
+              }
+            }],
+          xAxes:[{
+            gridLines: false,
+            drawBorder: false,
+            ticks:{
+              display: false
+            }
+          }]
+        }
+      }
+    });
+    var cty = document.getElementById('rewardgraph').getContext('2d');
+    var chart2 = new Chart(cty, {
+        type: 'line',
+        data: {
+            labels: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+            datasets: [{
+                label: "",
+                backgroundrColor: '',
+                fill: false,
+                borderColor: 'rgb(225, 210, 0)',
+                data: [5, 6, 2, 4, 5, 6, 5, 1, 2, 8, 7, 9, 10, 1],
+            }]
+        },
+        options: {
+          elements:{
+            point:{
+              radius:0
+            }
+          },
+          tooltips: {
+             enabled: true
+        },
+          drawBorder: false,
+          drawTicks: false,
+          legend: {
+            display: false
+          },
+          title: {
+            display: false
+          },
+          tooltop:{
+            enabled: false
+          },
+          scales: {
+            yAxes:[{
+              gridLines: false,
+              drawBorder: false,
+              ticks:{
+                display: false
+              }
+            }],
+          xAxes:[{
+            gridLines: false,
+            drawBorder: false,
+            ticks:{
+              display: false
+            }
+          }]
+        }
+      }
+    });
+    };
+
+    function checkTime(i) {
+        if (i < 10) {i = "0" + i};
+        return i;
+    }
+
+    function startTime(){
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      m = checkTime(m);
+      if (h == 0) {
+        h = 12;
+      } else if (h > 12) {
+        h = h - 12;
+      }
+      document.getElementById('clock').innerHTML =
+      h + ":" + m;
+      document.getElementById('clock2').innerHTML =
+      h + ":" + m;
+      var t = setTimeout(startTime, 500);
+    }
       </script>
   </body>
 </html>
